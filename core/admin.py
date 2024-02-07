@@ -28,7 +28,7 @@ class BrandAdmin(admin.ModelAdmin):
     list_display = ['name']
 
 admin.site.register(Speaker, SpeakerAdmin)
-admin.site.register(Session, SessionInline)
+admin.site.register(Session, SessionAdmin)
 admin.site.register(Day, DayAdmin)
 admin.site.register(Stage, StageAdmin)
 admin.site.register(Agenda, AgendaAdmin)

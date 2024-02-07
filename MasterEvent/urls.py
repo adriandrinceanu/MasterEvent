@@ -44,7 +44,7 @@ class UserViewSet(viewsets.ModelViewSet):
 # Routers provide an easy way of automatically determining the URL conf.
 router = DefaultRouter()
 router.register(r'speakers', SpeakerViewSet)
-router.register(r'sessions', SessionViewSet)
+router.register(r'sessions', SessionViewSet, basename='session')
 router.register(r'days', DayViewSet)
 router.register(r'stages', StageViewSet)
 router.register(r'agendas', AgendaViewSet)

@@ -1,46 +1,64 @@
 from rest_framework import serializers
 from .models import *
 
-class SpeakerSerializer(serializers.ModelSerializer):
-    speaker_sessions = serializers.StringRelatedField(many=True)
+class SpeakerSerializer(serializers.HyperlinkedModelSerializer):
+    # speaker_sessions = serializers.StringRelatedField(many=True)
     class Meta:
         model = Speaker
-        fields = ['id', 'name', 'company', 'position', 'image', 'social_media', 'speaker_sessions']
+        fields = ['url', 'id', 'name', 'company', 'position', 'image', 'social_media', 'speaker_sessions']
+        extra_kwargs = {
+            'url': {'view_name': 'speaker-detail', 'lookup_field': 'pk'}
+        }
 
-class SessionSerializer(serializers.ModelSerializer):
 
+class SessionSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Session
-        fields = ['id', 'name', 'description', 'stage', 'day', 'start_time', 'end_time', 'moderator', 'speakers', 'sponsored_by']
+        fields = ['url', 'id', 'name', 'description', 'stage', 'day', 'start_time', 'end_time', 'moderator', 'speakers', 'sponsored_by']
+        extra_kwargs = {
+            'url': {'view_name': 'session-detail', 'lookup_field': 'pk'}
+        }
 
    
 
-class DaySerializer(serializers.ModelSerializer):
-    sessions = SessionSerializer(many=True, read_only=True)
+class DaySerializer(serializers.HyperlinkedModelSerializer):
+    # sessions = SessionSerializer(many=True, read_only=True)
 
     class Meta:
         model = Day
-        fields = ['id', 'name', 'date', 'sessions']
+        fields = ['url', 'id', 'name', 'date', 'sessions']
+        extra_kwargs = {
+            'url': {'view_name': 'day-detail', 'lookup_field': 'pk'}
+        }
 
-class StageSerializer(serializers.ModelSerializer):
-    days = DaySerializer(many=True, read_only=True)
+class StageSerializer(serializers.HyperlinkedModelSerializer):
+    # days = DaySerializer(many=True, read_only=True)
 
     class Meta:
         model = Stage
-        fields = ['id', 'name', 'days']
+        fields = ['url', 'id', 'name', 'days']
+        extra_kwargs = {
+            'url': {'view_name': 'stage-detail', 'lookup_field': 'pk'}
+        }
         
         
-class AgendaSerializer(serializers.ModelSerializer):
-    sessions = SessionSerializer(many=True, read_only=True)
+class AgendaSerializer(serializers.HyperlinkedModelSerializer):
+    # sessions = SessionSerializer(many=True, read_only=True)
 
     class Meta:
         model = Agenda
-        fields = ['id', 'sessions']
+        fields = ['url', 'id', 'sessions']
+        extra_kwargs = {
+            'url': {'view_name': 'agenda-detail', 'lookup_field': 'pk'}
+        }
         
-class BrandSerializer(serializers.ModelSerializer):
+class BrandSerializer(serializers.HyperlinkedModelSerializer):
     sessions = SessionSerializer(many=True, read_only=True)
 
     class Meta:
         model = Brand
-        fields = ['id', 'name', 'logo', 'sessions']
+        fields = ['url', 'id', 'name', 'logo', 'sessions']
+        extra_kwargs = {
+            'url': {'view_name': 'brand-detail', 'lookup_field': 'pk'}
+        }
