@@ -1,3 +1,5 @@
+run in new terminal - docker exec -it masterevent-web-1  bash
+
 Speakers:
     - name
     - company
