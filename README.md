@@ -1,4 +1,9 @@
-run in new terminal - docker exec -it masterevent-web-1  bash
+run in new terminal 
+1. docker exec -it masterevent-web-1  bash
+2. npx create-next-app frontend
+3. cd frontend
+<!-- 4. npm run dev -- -p 3000 -->
+
 
 Speakers:
     - name
