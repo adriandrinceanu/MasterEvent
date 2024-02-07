@@ -42,13 +42,13 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
 # Routers provide an easy way of automatically determining the URL conf.
-router = routers.DefaultRouter()
-router.register(r'users', UserViewSet)
+router = DefaultRouter()
 router.register(r'speakers', SpeakerViewSet)
-router.register(r'brands', BrandViewSet)
-router.register(r'stages', StageViewSet)
-router.register(r'days', DayViewSet)
 router.register(r'sessions', SessionViewSet)
+router.register(r'days', DayViewSet)
+router.register(r'stages', StageViewSet)
+router.register(r'agendas', AgendaViewSet)
+router.register(r'brands', BrandViewSet)
 
 
 # Wire up our API using automatic URL routing.
